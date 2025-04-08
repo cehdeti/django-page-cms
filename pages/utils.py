@@ -5,13 +5,12 @@ import re
 import unicodedata
 
 from django.conf import settings as django_settings
-from django.utils import timezone
 from django.template import Context
 from django import template
-from django.utils.encoding import force_text
+from django.utils.encoding import force_str
 from django.utils.safestring import SafeText, mark_safe
 
-from datetime import datetime
+from datetime import datetime, timezone
 
 dummy_context = Context()
 
@@ -144,11 +143,11 @@ def slugify(value, allow_unicode=False):
     Copyright: https://docs.djangoproject.com/en/1.9/_modules/django/utils/text/#slugify
     TODO: replace after stopping support for Django 1.8
     """
-    value = force_text(value)
+    value = force_str(value)
     if allow_unicode:
         value = unicodedata.normalize('NFKC', value)
-        value = re.sub('[^\w\s-]', '', value, flags=re.U).strip().lower()
-        return mark_safe(re.sub('[-\s]+', '-', value, flags=re.U))
+        value = re.sub(r'[^\w\s-]', '', value, flags=re.U).strip().lower()
+        return mark_safe(re.sub(r'[-\s]+', '-', value, flags=re.U))
     value = unicodedata.normalize('NFKD', value).encode('ascii', 'ignore').decode('ascii')
-    value = re.sub('[^\w\s-]', '', value).strip().lower()
-    return mark_safe(re.sub('[-\s]+', '-', value))
+    value = re.sub(r'[^\w\s-]', '', value).strip().lower()
+    return mark_safe(re.sub(r'[-\s]+', '-', value))

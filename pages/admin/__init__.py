@@ -13,8 +13,8 @@ from os.path import join
 import urllib
 from collections import defaultdict
 from django.contrib import admin
-from django.utils.translation import ugettext_lazy as _
-from django.utils.encoding import force_text
+from django.utils.translation import gettext_lazy as _
+from django.utils.encoding import force_str
 from django.conf import settings as global_settings
 from django.http import HttpResponseRedirect, Http404
 from django.contrib.admin.sites import AlreadyRegistered
@@ -85,7 +85,7 @@ class PageAdmin(admin.ModelAdmin):
 
     def get_urls(self):
         urls = super(PageAdmin, self).get_urls()
-        from django.conf.urls import url
+        from django.urls import re_path as url
 
         pages_urls = [
             url(r'^$', self.list_pages, name='page-changelist'),
@@ -230,7 +230,7 @@ class PageAdmin(admin.ModelAdmin):
             template_choices.insert(0, (settings.PAGE_DEFAULT_TEMPLATE,
                     _('Default template')))
         form.base_fields['template'].choices = template_choices
-        form.base_fields['template'].initial = force_text(template)
+        form.base_fields['template'].initial = force_str(template)
 
         for placeholder in get_placeholders(template):
             ctype = placeholder.ctype
