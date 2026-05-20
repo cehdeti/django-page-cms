@@ -9,7 +9,7 @@ $(function($) {
         return;
     }
     var pages = window.pages;
-    var static_url = window.static_url;
+    var static_url = '';
     var django = window.django;
     var action = false;
     var selected_page = false;
