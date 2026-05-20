@@ -9,7 +9,7 @@
 $(function () {
 
 
-jQuery.fn.rte = function(static_url, media_url) {
+jQuery.fn.rte = function(media_url) {
 
     if(document.designMode || document.contentEditable) {
         $(this).each( function(){
@@ -67,14 +67,13 @@ jQuery.fn.rte = function(static_url, media_url) {
             iframe.title = textarea.attr('name');
         textarea.after(iframe);
         var css = "";
-        css = "<link type='text/css' rel='stylesheet' href='"+static_url+"css/font-awesome.min.css' />";
-        css = css + "<link type='text/css' rel='stylesheet' href='"+static_url+"css/rte.css' />";
+        css = "<link type='text/css' rel='stylesheet' href='css/font-awesome.min.css' />";
+        css = css + "<link type='text/css' rel='stylesheet' href='css/rte.css' />";
         var content = textarea.val();
         // Mozilla need this to display caret
         if($.trim(content)==='')
             content = '<br>';
-        var scripts = "<script src='"+static_url+"javascript/jquery.js'></script><script src='" + 
-            static_url+"javascript/iframe.rte.js'></script>";
+        var scripts = "<script src='javascript/jquery.js'></script><script src='javascript/iframe.rte.js'></script>";
 
         var doc = "<html><head>"+css+scripts+"</head><body id='frameBody'>"+content+"</body></html>";
         tryEnableDesignMode(iframe, doc, function() {

@@ -68,12 +68,12 @@ class PageAdmin(admin.ModelAdmin):
 
     class Media:
         css = {
-            'all': [join(settings.PAGES_STATIC_URL, path) for path in (
+            'all': [join('' path) for path in (
                 'css/rte.css',
                 'css/pages.css'
             )]
         }
-        js = [join(settings.PAGES_STATIC_URL, path) for path in (
+        js = [join('' path) for path in (
             'javascript/jquery.js',
             'javascript/jquery.rte.js',
             'javascript/pages.js',
