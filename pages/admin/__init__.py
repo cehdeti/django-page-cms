@@ -73,7 +73,7 @@ class PageAdmin(admin.ModelAdmin):
                 'css/pages.css'
             )]
         }
-        js = [join('' path) for path in (
+        js = [join('', path) for path in (
             'javascript/jquery.js',
             'javascript/jquery.rte.js',
             'javascript/pages.js',
