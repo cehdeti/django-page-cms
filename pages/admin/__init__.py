@@ -68,7 +68,7 @@ class PageAdmin(admin.ModelAdmin):
 
     class Media:
         css = {
-            'all': [join('' path) for path in (
+            'all': [join('', path) for path in (
                 'css/rte.css',
                 'css/pages.css'
             )]
