@@ -175,8 +175,9 @@ if not PAGES_MEDIA_URL:
 PAGES_STATIC_URL = get_setting('PAGES_STATIC_URL')
 if not PAGES_STATIC_URL:
     static_url = get_setting('PAGES_STATIC_URL', 'STATIC_URL', raise_error=True)
-    static_url = static_url + 'pages/'
-    PAGES_STATIC_URL = str(static_url)
+    if static_url:
+        static_url = static_url + 'pages/'
+        PAGES_STATIC_URL = str(static_url)
 
 
 # Hide the slug's of the first root page ie: ``/home/`` becomes ``/``
