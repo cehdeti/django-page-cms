@@ -72,7 +72,7 @@ class Details(object):
 
         # If unauthorized to see the pages, raise a 404, That can
         # happen with expired pages.
-        if not is_staff and not current_page.visible:
+        if not current_page or (not is_staff and not current_page.visible):
             raise Http404
 
         redirection = self.resolve_redirection(request, context)
